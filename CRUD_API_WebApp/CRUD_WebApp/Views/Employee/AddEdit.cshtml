@@ -1,0 +1,51 @@
+﻿@model CRUD_WebApp.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Add/Edit";
+}
+
+<h2>Add/Edit</h2>
+
+<div class="form-group">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.EmployeeID)
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.LastName)
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.FirstName)
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.HireDt)
+                @Html.EditorFor(model => model.HireDt)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.DepartmentID)
+                @Html.DropDownListFor(model => model.DepartmentID, ViewBag.DepartList as SelectList, "--Please Select--", new { @class = "Form-control" })
+                @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn Button" />
+                <input type="reset" value="Reset" class="btn Button" />
+            </div>
+        </div>
+    </div>
+    }
+

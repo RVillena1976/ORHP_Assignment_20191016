@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CRUD_WebApp.Models.EmployeeViewModel>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+
+<h2>Employee List</h2>
+
+<p>
+    <a href="@Url.Action("AddEdit", "Employee")" class="btn btn-default">Add Employee</a>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DepartmentID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.HireDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.EmployeeID)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DepartmentID)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.HireDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            <a href="@Url.Action("AddEdit", "Employee", new { id = item.EmployeeID })" class="btn-default">Edit</a> |
+            <a href="@Url.Action("Delete", "Employee", new { id = item.EmployeeID })" class="btn-default">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script>
+        $(function() {
+            var successMsg = '@TempData["SuccessMessage"]'
+            if (successMsg != '')
+                alertify.success(successMsg);
+        });
+    </script>
+    }
